@@ -207,7 +207,7 @@ func (logger *Logger) SetAsync(data ...int) {
 //return : error
 func (logger *Logger) Writer(level int, msg string) error {
 	funcName := "null"
-	pc, file, line, ok := runtime.Caller(2)
+	pc, file, line, ok := runtime.Caller(3)
 	if !ok {
 		file = "null"
 		line = 0

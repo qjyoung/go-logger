@@ -1,4 +1,4 @@
-module github.com/phachon/go-logger
+module github.com/qjyoung/go-logger
 
 go 1.12
 
