@@ -2,7 +2,7 @@ package go_logger
 
 import (
 	"errors"
-	"github.com/phachon/go-logger/utils"
+	"github.com/qjyoung/go-logger/utils"
 	"os"
 	"path"
 	"reflect"
