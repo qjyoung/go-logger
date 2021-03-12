@@ -39,7 +39,7 @@ func TestAdapterFile_Write(t *testing.T) {
 		TimestampFormat:   time.Now().Format("2006-01-02 15:04:05"),
 		Millisecond:       time.Now().UnixNano() / 1e6,
 		MillisecondFormat: time.Now().Format("2006-01-02 15:04:05.999"),
-		Level:             LOGGER_LEVEL_DEBUG,
+		Level:             LoggerLevelDebug,
 		LevelString:       "debug",
 		Body:              "logger test file adapter write",
 		File:              "file_test.go",
@@ -59,9 +59,9 @@ func TestAdapterFile_WriteLevelFile(t *testing.T) {
 	fileConfig := &FileConfig{
 		Filename: "./test.log",
 		LevelFileName: map[int]string{
-			LOGGER_LEVEL_DEBUG: "./debug.log",
-			LOGGER_LEVEL_INFO:  "./info.log",
-			LOGGER_LEVEL_ERROR: "./error.log",
+			LoggerLevelDebug: "./debug.log",
+			LoggerLevelInfo:  "./info.log",
+			LoggerLevelError: "./error.log",
 		},
 		MaxLine:    2000,
 		MaxSize:    10000 * 4,
@@ -78,7 +78,7 @@ func TestAdapterFile_WriteLevelFile(t *testing.T) {
 		TimestampFormat:   time.Now().Format("2006-01-02 15:04:05"),
 		Millisecond:       time.Now().UnixNano() / 1e6,
 		MillisecondFormat: time.Now().Format("2006-01-02 15:04:05.999"),
-		Level:             LOGGER_LEVEL_DEBUG,
+		Level:             LoggerLevelDebug,
 		LevelString:       "debug",
 		Body:              "logger test file adapter write",
 		File:              "file_test.go",
@@ -86,8 +86,8 @@ func TestAdapterFile_WriteLevelFile(t *testing.T) {
 		Function:          "TestAdapterFile_Write",
 	}
 	fileAdapter.Write(loggerMsg)
-	loggerMsg.Level = LOGGER_LEVEL_INFO
+	loggerMsg.Level = LoggerLevelInfo
 	fileAdapter.Write(loggerMsg)
-	loggerMsg.Level = LOGGER_LEVEL_ERROR
+	loggerMsg.Level = LoggerLevelError
 	fileAdapter.Write(loggerMsg)
 }

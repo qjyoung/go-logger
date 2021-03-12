@@ -4,10 +4,8 @@ import (
 	"github.com/qjyoung/go-logger"
 )
 
-func main() {
-
+func file() {
 	logger := go_logger.NewLogger()
-
 	fileConfig := &go_logger.FileConfig{
 		Filename: "./test.log",
 		LevelFileName: map[int]string{
@@ -21,7 +19,7 @@ func main() {
 		JsonFormat: false,
 		Format:     "%millisecond_format% [%level_string%] [%file%:%line%] %body%",
 	}
-	logger.Attach("file", go_logger.LOGGER_LEVEL_DEBUG, fileConfig)
+	logger.Attach("file", go_logger.LoggerLevelDebug, fileConfig)
 	logger.SetAsync()
 
 	i := 0

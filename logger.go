@@ -14,14 +14,14 @@ import (
 var Version = "v1.2"
 
 const (
-	LOGGER_LEVEL_EMERGENCY = iota
-	LOGGER_LEVEL_ALERT
-	LOGGER_LEVEL_CRITICAL
-	LOGGER_LEVEL_ERROR
-	LOGGER_LEVEL_WARNING
-	LOGGER_LEVEL_NOTICE
-	LOGGER_LEVEL_INFO
-	LOGGER_LEVEL_DEBUG
+	LoggerLevelEmergency = iota
+	LoggerLevelAlert
+	LoggerLevelCritical
+	LoggerLevelError
+	LoggerLevelWarning
+	LoggerLevelNotice
+	LoggerLevelInfo
+	LoggerLevelDebug
 )
 
 type adapterLoggerFunc func() LoggerAbstract
@@ -36,14 +36,14 @@ type LoggerAbstract interface {
 var adapters = make(map[string]adapterLoggerFunc)
 
 var levelStringMapping = map[int]string{
-	LOGGER_LEVEL_EMERGENCY: "Emergency",
-	LOGGER_LEVEL_ALERT:     "Alert",
-	LOGGER_LEVEL_CRITICAL:  "Critical",
-	LOGGER_LEVEL_ERROR:     "Error",
-	LOGGER_LEVEL_WARNING:   "Warning",
-	LOGGER_LEVEL_NOTICE:    "Notice",
-	LOGGER_LEVEL_INFO:      "Info",
-	LOGGER_LEVEL_DEBUG:     "Debug",
+	LoggerLevelEmergency: "Emergency",
+	LoggerLevelAlert:     "Alert",
+	LoggerLevelCritical:  "Critical",
+	LoggerLevelError:     "Error",
+	LoggerLevelWarning:   "Warning",
+	LoggerLevelNotice:    "Notice",
+	LoggerLevelInfo:      "Info",
+	LoggerLevelDebug:     "Debug",
 }
 
 var defaultLoggerMessageFormat = "%millisecond_format% [%level_string%] %body%"
@@ -99,7 +99,7 @@ func NewLogger() *Logger {
 		signalChan:  make(chan string, 1),
 	}
 	//default adapter console
-	logger.attach("console", LOGGER_LEVEL_DEBUG, &ConsoleConfig{})
+	logger.attach("console", LoggerLevelDebug, &ConsoleConfig{})
 
 	return logger
 }
@@ -304,23 +304,23 @@ func (logger *Logger) LoggerLevel(levelStr string) int {
 	levelStr = strings.ToUpper(levelStr)
 	switch levelStr {
 	case "EMERGENCY":
-		return LOGGER_LEVEL_EMERGENCY
+		return LoggerLevelEmergency
 	case "ALERT":
-		return LOGGER_LEVEL_ALERT
+		return LoggerLevelAlert
 	case "CRITICAL":
-		return LOGGER_LEVEL_CRITICAL
+		return LoggerLevelCritical
 	case "ERROR":
-		return LOGGER_LEVEL_ERROR
+		return LoggerLevelError
 	case "WARNING":
-		return LOGGER_LEVEL_WARNING
+		return LoggerLevelWarning
 	case "NOTICE":
-		return LOGGER_LEVEL_NOTICE
+		return LoggerLevelNotice
 	case "INFO":
-		return LOGGER_LEVEL_INFO
+		return LoggerLevelInfo
 	case "DEBUG":
-		return LOGGER_LEVEL_DEBUG
+		return LoggerLevelDebug
 	default:
-		return LOGGER_LEVEL_DEBUG
+		return LoggerLevelDebug
 	}
 }
 
@@ -341,90 +341,90 @@ func loggerMessageFormat(format string, loggerMsg *loggerMessage) string {
 
 //log emergency level
 func (logger *Logger) Emergency(msg string) {
-	logger.Writer(LOGGER_LEVEL_EMERGENCY, msg)
+	logger.Writer(LoggerLevelEmergency, msg)
 }
 
 //log emergency format
 func (logger *Logger) Emergencyf(format string, a ...interface{}) {
 	msg := fmt.Sprintf(format, a...)
-	logger.Writer(LOGGER_LEVEL_EMERGENCY, msg)
+	logger.Writer(LoggerLevelEmergency, msg)
 }
 
 //log alert level
 func (logger *Logger) Alert(msg string) {
-	logger.Writer(LOGGER_LEVEL_ALERT, msg)
+	logger.Writer(LoggerLevelAlert, msg)
 }
 
 //log alert format
 func (logger *Logger) Alertf(format string, a ...interface{}) {
 	msg := fmt.Sprintf(format, a...)
-	logger.Writer(LOGGER_LEVEL_ALERT, msg)
+	logger.Writer(LoggerLevelAlert, msg)
 }
 
 //log critical level
 func (logger *Logger) Critical(msg string) {
-	logger.Writer(LOGGER_LEVEL_CRITICAL, msg)
+	logger.Writer(LoggerLevelCritical, msg)
 }
 
 //log critical format
 func (logger *Logger) Criticalf(format string, a ...interface{}) {
 	msg := fmt.Sprintf(format, a...)
-	logger.Writer(LOGGER_LEVEL_CRITICAL, msg)
+	logger.Writer(LoggerLevelCritical, msg)
 }
 
 //log error level
 func (logger *Logger) Error(msg string) {
-	logger.Writer(LOGGER_LEVEL_ERROR, msg)
+	logger.Writer(LoggerLevelError, msg)
 }
 
 //log error format
 func (logger *Logger) Errorf(format string, a ...interface{}) {
 	msg := fmt.Sprintf(format, a...)
-	logger.Writer(LOGGER_LEVEL_ERROR, msg)
+	logger.Writer(LoggerLevelError, msg)
 }
 
 //log warning level
 func (logger *Logger) Warning(msg string) {
-	logger.Writer(LOGGER_LEVEL_WARNING, msg)
+	logger.Writer(LoggerLevelWarning, msg)
 }
 
 //log warning format
 func (logger *Logger) Warningf(format string, a ...interface{}) {
 	msg := fmt.Sprintf(format, a...)
-	logger.Writer(LOGGER_LEVEL_WARNING, msg)
+	logger.Writer(LoggerLevelWarning, msg)
 }
 
 //log notice level
 func (logger *Logger) Notice(msg string) {
-	logger.Writer(LOGGER_LEVEL_NOTICE, msg)
+	logger.Writer(LoggerLevelNotice, msg)
 }
 
 //log notice format
 func (logger *Logger) Noticef(format string, a ...interface{}) {
 	msg := fmt.Sprintf(format, a...)
-	logger.Writer(LOGGER_LEVEL_NOTICE, msg)
+	logger.Writer(LoggerLevelNotice, msg)
 }
 
 //log info level
 func (logger *Logger) Info(msg string) {
-	logger.Writer(LOGGER_LEVEL_INFO, msg)
+	logger.Writer(LoggerLevelInfo, msg)
 }
 
 //log info format
 func (logger *Logger) Infof(format string, a ...interface{}) {
 	msg := fmt.Sprintf(format, a...)
-	logger.Writer(LOGGER_LEVEL_INFO, msg)
+	logger.Writer(LoggerLevelInfo, msg)
 }
 
 //log debug level
 func (logger *Logger) Debug(msg string) {
-	logger.Writer(LOGGER_LEVEL_DEBUG, msg)
+	logger.Writer(LoggerLevelDebug, msg)
 }
 
 //log debug format
 func (logger *Logger) Debugf(format string, a ...interface{}) {
 	msg := fmt.Sprintf(format, a...)
-	logger.Writer(LOGGER_LEVEL_DEBUG, msg)
+	logger.Writer(LoggerLevelDebug, msg)
 }
 
 func printError(message string) {

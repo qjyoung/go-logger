@@ -4,8 +4,7 @@ import (
 	"github.com/qjyoung/go-logger"
 )
 
-func main() {
-
+func api() {
 	logger := go_logger.NewLogger()
 
 	apiConfig := &go_logger.ApiConfig{
@@ -15,7 +14,7 @@ func main() {
 		IsVerify:   false,
 		VerifyCode: 0,
 	}
-	logger.Attach("api", go_logger.LOGGER_LEVEL_DEBUG, apiConfig)
+	logger.Attach("api", go_logger.LoggerLevelDebug, apiConfig)
 	logger.SetAsync()
 
 	logger.Emergency("this is a emergency log!")

@@ -33,7 +33,7 @@ func BenchmarkLoggerConsoleAsyncText(b *testing.B) {
 func BenchmarkLoggerConsoleJson(b *testing.B) {
 	logger := NewLogger()
 	logger.Detach("console")
-	logger.Attach("console", LOGGER_LEVEL_DEBUG, &ConsoleConfig{
+	logger.Attach("console", LoggerLevelDebug, &ConsoleConfig{
 		JsonFormat: true,
 	})
 	b.ResetTimer()
@@ -48,7 +48,7 @@ func BenchmarkLoggerConsoleJson(b *testing.B) {
 func BenchmarkLoggerFileText(b *testing.B) {
 	logger := NewLogger()
 	logger.Detach("console")
-	logger.Attach("file", LOGGER_LEVEL_DEBUG, &FileConfig{
+	logger.Attach("file", LoggerLevelDebug, &FileConfig{
 		Filename:  "./test.log",
 		DateSlice: "d",
 	})
@@ -64,7 +64,7 @@ func BenchmarkLoggerFileText(b *testing.B) {
 func BenchmarkLoggerFileAsyncText(b *testing.B) {
 	logger := NewLogger()
 	logger.Detach("console")
-	logger.Attach("file", LOGGER_LEVEL_DEBUG, &FileConfig{
+	logger.Attach("file", LoggerLevelDebug, &FileConfig{
 		Filename:  "./test.log",
 		DateSlice: "d",
 	})
@@ -83,7 +83,7 @@ func BenchmarkLoggerFileAsyncText(b *testing.B) {
 func BenchmarkLoggerFileJson(b *testing.B) {
 	logger := NewLogger()
 	logger.Detach("console")
-	logger.Attach("file", LOGGER_LEVEL_DEBUG, &FileConfig{
+	logger.Attach("file", LoggerLevelDebug, &FileConfig{
 		Filename:   "./test.log",
 		DateSlice:  "d",
 		JsonFormat: true,

@@ -16,7 +16,7 @@ func TestLogger_Attach(t *testing.T) {
 	fileConfig := &FileConfig{
 		Filename: "./test.log",
 	}
-	logger.Attach("file", LOGGER_LEVEL_DEBUG, fileConfig)
+	logger.Attach("file", LoggerLevelDebug, fileConfig)
 	outputs := logger.outputs
 	for _, outputLogger := range outputs {
 		if outputLogger.Name != "file" {
@@ -42,23 +42,23 @@ func TestLogger_LoggerLevel(t *testing.T) {
 	logger := NewLogger()
 
 	level := logger.LoggerLevel("emerGENCY")
-	if level != LOGGER_LEVEL_EMERGENCY {
+	if level != LoggerLevelEmergency {
 		t.Error("logger loggerLevel error")
 	}
 	level = logger.LoggerLevel("ALERT")
-	if level != LOGGER_LEVEL_ALERT {
+	if level != LoggerLevelAlert {
 		t.Error("logger loggerLevel error")
 	}
 	level = logger.LoggerLevel("cRITICAL")
-	if level != LOGGER_LEVEL_CRITICAL {
+	if level != LoggerLevelCritical {
 		t.Error("logger loggerLevel error")
 	}
 	level = logger.LoggerLevel("DEBUG")
-	if level != LOGGER_LEVEL_DEBUG {
+	if level != LoggerLevelDebug {
 		t.Error("logger loggerLevel error")
 	}
 	level = logger.LoggerLevel("ooox")
-	if level != LOGGER_LEVEL_DEBUG {
+	if level != LoggerLevelDebug {
 		t.Error("logger loggerLevel error")
 	}
 }
@@ -70,7 +70,7 @@ func TestLogger_loggerMessageFormat(t *testing.T) {
 		TimestampFormat:   time.Now().Format("2006-01-02 15:04:05"),
 		Millisecond:       time.Now().UnixNano() / 1e6,
 		MillisecondFormat: time.Now().Format("2006-01-02 15:04:05.999"),
-		Level:             LOGGER_LEVEL_DEBUG,
+		Level:             LoggerLevelDebug,
 		LevelString:       "debug",
 		Body:              "logger console adapter test",
 		File:              "console_test.go",

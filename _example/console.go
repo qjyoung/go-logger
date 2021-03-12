@@ -4,8 +4,7 @@ import (
 	"github.com/qjyoung/go-logger"
 )
 
-func main() {
-
+func console() {
 	logger := go_logger.NewLogger()
 	//default attach console, detach console
 	logger.Detach("console")
@@ -16,7 +15,7 @@ func main() {
 		Format:     "%millisecond_format% [%level_string%] [%file%:%line%] %body%",
 	}
 
-	logger.Attach("console", go_logger.LOGGER_LEVEL_DEBUG, consoleConfig)
+	logger.Attach("console", go_logger.LoggerLevelDebug, consoleConfig)
 
 	logger.SetAsync()
 
